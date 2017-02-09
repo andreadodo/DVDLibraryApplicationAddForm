@@ -1,4 +1,4 @@
-package src.model;
+package model;
 
 /**
  * Created by andrea on 07/02/17.
@@ -11,7 +11,7 @@ public class DVDItem {
         this.dvdTitle = dvdTitle;
         this.dvdYear = dvdYear;
         this.dvdGenre = dvdGenre;
-    }
+}
 
     public String getDvdTitle() {
         return dvdTitle;

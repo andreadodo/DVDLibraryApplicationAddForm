@@ -1,4 +1,4 @@
-package src.controller;
+package view;
 
 import model.DVDCollection;
 import model.DVDItem;
@@ -45,7 +45,9 @@ public class list_libraryview extends HttpServlet {
             out.println("<body>");
             out.println("<p>You have " + dvdLibrary.getLibrary().size() + " DVD in your collection.</p>");
             out.println("<table>");
-            out.println("<tr><td>TITLE</td><td>YEAR</td><td>GENRE</td></tr>");
+
+            if (! dvdLibrary.getLibrary().isEmpty())
+                out.println("<tr><td>TITLE</td><td>YEAR</td><td>GENRE</td></tr>");
 
             for (DVDItem dvd : dvdLibrary.getLibrary()) {
                 out.println("<tr>");

@@ -1,4 +1,4 @@
-package src.model;
+package model;
 
 import java.util.ArrayList;
 
@@ -12,15 +12,15 @@ public class DVDCollection {
         return dvdLibrary;
     }
 
-    private DVDCollection(){
-        dvdLibrary.add(new DVDItem("Close Encounters of the Third Kind", 1967, "Sci-Fi"));
-        dvdLibrary.add(new DVDItem("Star Wars", 1977, "Sci-Fi"));
-        dvdLibrary.add(new DVDItem("Mission To Mars", 2000, "Sci-Fi"));
-    }
+    private DVDCollection(){}
 
     private static final DVDCollection dvdCollection = new DVDCollection();
 
     public static DVDCollection getDvdCollection(){
         return dvdCollection;
+    }
+
+    public void addDvd(DVDItem dvd){
+        dvdLibrary.add(dvd);
     }
 }

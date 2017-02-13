@@ -1,5 +1,8 @@
 package view;
 
+import model.DVDCollection;
+import model.DVDItem;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +20,18 @@ public class formDvdview extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
+            //Retrieve from parameters.
+            String idStr = request.getParameter("id");
+
+            int id = -1;
+            try {
+                id = Integer.parseInt(idStr);
+            } catch (NumberFormatException nfe) {
+            }
+
+            DVDCollection dvdLibrary = DVDCollection.getDvdCollection();
+            DVDItem dvd = dvdLibrary.getDvd(id);
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -25,18 +40,41 @@ public class formDvdview extends HttpServlet {
             out.println("<body>");
             out.println("<form action='addDvd.do' method='POST'>");
             out.println("Title:<br>");
-            out.println("<input type='text' name='title' value='insert Title'>");
+            if(dvd.equals(null))
+                out.println("<input type='text' name='title' value='insert Title'>");
+            else
+                out.println("<input type='text' name='title' value='"+ dvd.getDvdTitle() +"'>");
             out.println("<br><br>");
             out.println("Year:<br>");
-            out.println("<input type='text' name='year' value='insert Year'>");
+            if(dvd.equals(null))
+                out.println("<input type='text' name='year' value='insert Year'>");
+            else
+                out.println("<input type='text' name='year' value='"+ dvd.getDvdYear() +"'>");
             out.println("<br><br>");
             out.println("Genre:<br>");
-            out.println("<select name='genre'>");
-            out.println("<option value ='UNKNOW'>select...</option>");
-            out.println("<option value ='Sci-Fi'>Sci-Fi</option>");
-            out.println("<option value ='Cartoon'>Cartoon</option>");
-            out.println("<option value ='Dramatics'>Dramatics</option>");
-            out.println("</select>");
+            if(dvd.equals(null)) {
+                out.println("<select name='genre'>");
+                out.println("<option value ='UNKNOW'>select...</option>");
+                out.println("<option value ='Sci-Fi'>Sci-Fi</option>");
+                out.println("<option value ='Cartoon'>Cartoon</option>");
+                out.println("<option value ='Dramatics'>Dramatics</option>");
+                out.println("</select>");
+            }
+            else {
+                out.println("<select name='genre'>");
+                out.println("<option value ='Sci-Fi' ");
+                if(dvd.getDvdGenre().equals("Sci-Fi"))
+                    out.println("selected");
+                out.println(">Sci-Fi</option>");
+                if(dvd.getDvdGenre().equals("Cartoon"))
+                    out.println("selected");
+                out.println(">Cartoon</option>");
+                if(dvd.getDvdGenre().equals("Dramatics"))
+                    out.println("selected");
+                out.println(">Dramatics</option>");
+                out.println("</select>");
+            }
+
             out.println("<br><br>");
             out.println("<input type='submit' value='Add to Library'>");
             out.println("</form>");

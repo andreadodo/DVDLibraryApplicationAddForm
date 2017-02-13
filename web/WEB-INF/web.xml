@@ -14,7 +14,6 @@
     </servlet-mapping>
 
 
-
     <servlet>
         <servlet-name>formDvd.view</servlet-name>
         <servlet-class>view.formDvdview</servlet-class>
@@ -26,9 +25,9 @@
 
 
     <servlet>
-    <servlet-name>Success.view</servlet-name>
-    <servlet-class>view.Successview</servlet-class>
-</servlet>
+        <servlet-name>Success.view</servlet-name>
+        <servlet-class>view.Successview</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Success.view</servlet-name>
         <url-pattern>/Success.view</url-pattern>
@@ -56,6 +55,23 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>editDvd.do</servlet-name>
+        <servlet-class>controller.editDvddo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editDvd.do</servlet-name>
+        <url-pattern>/editDvd.do</url-pattern>
+    </servlet-mapping>
 
-    
+    <servlet>
+        <servlet-name>delDvd.do</servlet-name>
+        <servlet-class>controller.delDvddo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delDvd.do</servlet-name>
+        <url-pattern>/del</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

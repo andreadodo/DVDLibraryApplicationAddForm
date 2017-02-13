@@ -1,8 +1,6 @@
 package controller;
 
-
 import model.DVDCollection;
-import model.DVDItem;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +11,12 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.sun.tools.doclets.formats.html.markup.HtmlStyle.title;
+
 /**
- * Created by andrea on 09/02/17.
+ * Created by andrea on 10/02/17.
  */
-public class addDvddo extends HttpServlet {
+public class delDvddo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -26,28 +26,13 @@ public class addDvddo extends HttpServlet {
 
         try {
             //Retrieve from parameters.
-            String title = request.getParameter("title").trim();
-            String yearStr = request.getParameter("year").trim();
-            String genre = request.getParameter("genre").trim();
+            String idStr = request.getParameter("id");
 
-            int year = -1;
+            int id = -1;
             try {
-                year = Integer.parseInt(yearStr);
+                id = Integer.parseInt(idStr);
             } catch (NumberFormatException nfe) {
-                errorMsgs.add("The 'year' field must be a number.");
-            }
-
-            //Verify form parametrs
-            if (genre.equals("UNKNOW"))
-                errorMsgs.add("Please select a genre.");
-            if (title.length() == 0 || title.equals("insert Title"))
-                errorMsgs.add("Please enter title of the Dvd.");
-
-            if ((year != -1) && ((year < 1900) || (year > 2017))) {
-                if (year > 2017)
-                    errorMsgs.add("Wow ... a dvd from the future.");
-                else
-                    errorMsgs.add("The 'year' field must within 1900 to 2017");
+                errorMsgs.add("The 'id' must be a number.");
             }
 
             //open error view
@@ -60,18 +45,15 @@ public class addDvddo extends HttpServlet {
 
             //Perform business logic
             DVDCollection dvdLibrary = DVDCollection.getDvdCollection();
-
-            int id = dvdLibrary.getLastId()+1;
-            DVDItem dvd = new DVDItem(id,title,year,genre);
-            dvdLibrary.addDvd(dvd);
+            dvdLibrary.delDvd(id);
 
             //open succes view
-            request.setAttribute("dvd", dvd);
-            RequestDispatcher view = request.getRequestDispatcher("Success.view");
+            request.setAttribute("id", id);
+            RequestDispatcher view = request.getRequestDispatcher("list_library.view");
             view.forward(request, response);
             return;
 
-        //Handle any unexpected exceptions
+            //Handle any unexpected exceptions
         } catch (RuntimeException re) {
             errorMsgs.add(re.getMessage());
             request.setAttribute("errors", errorMsgs);

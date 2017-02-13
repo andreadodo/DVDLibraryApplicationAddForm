@@ -3,6 +3,7 @@ package view;
 import model.DVDCollection;
 import model.DVDItem;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,17 +47,28 @@ public class list_libraryview extends HttpServlet {
             out.println("<p>You have " + dvdLibrary.getLibrary().size() + " DVD in your collection.</p>");
             out.println("<table>");
 
-            if (! dvdLibrary.getLibrary().isEmpty())
-                out.println("<tr><td>TITLE</td><td>YEAR</td><td>GENRE</td></tr>");
+            if (! dvdLibrary.getLibrary().isEmpty()) {
+                out.println("<tr><td>ID</td><td>TITLE</td><td>YEAR</td><td>GENRE</td><td>EDIT</td><td>DELETE</td></tr>");
+                for (DVDItem dvd : dvdLibrary.getLibrary()) {
+                    out.println("<tr>");
+                    //out.println("<td>" + dvd.getDvdId() + "</td>"); test id
+                    out.println("<td>" + dvd.getDvdTitle() + "</td>");
+                    out.println("<td>" + dvd.getDvdYear() + "</td>");
+                    out.println("<td>" + dvd.getDvdGenre() + "</td>");
 
-            for (DVDItem dvd : dvdLibrary.getLibrary()) {
-                out.println("<tr>");
-                out.println("<td>" + dvd.getDvdTitle() + "</td>");
-                out.println("<td>" + dvd.getDvdYear() + "</td>");
-                out.println("<td>" + dvd.getDvdGenre() + "</td>");
-                out.println("</tr>");
+                    out.println("<td><form action=editDvd.do method='POST'>"
+                              + "<input name='id' value='" + dvd.getDvdId() + "' type='hidden'>"
+                              + "<input type='submit' value='edit'> </form></td>");
+
+                    out.println("<td><form action=delDvd.do method='POST'>"
+                              + "<input name='id' value='" + dvd.getDvdId() + "' type='hidden'>"
+                              + "<input type='submit' value='delete'> </form></td>");
+
+                  /*out.println("<td>" + "<a href='editDvd.do'>edit</a>" + "</td>");
+                    out.println("<td>" + "<a href='delDvd.do'>delete</a>" + "</td>");*/
+                    out.println("</tr>");
+                }
             }
-
             out.println("</table>");
             out.println("</body>");
             out.println("</html>");

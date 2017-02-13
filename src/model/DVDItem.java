@@ -5,13 +5,21 @@ package model;
  */
 public class DVDItem {
     private String dvdTitle, dvdGenre;
-    private int dvdYear;
+    private int dvdId, dvdYear;
 
-    public DVDItem(String dvdTitle, int dvdYear, String dvdGenre) {
+    public DVDItem(int dvdId, String dvdTitle, int dvdYear, String dvdGenre) {
+        this.dvdId = dvdId;
         this.dvdTitle = dvdTitle;
         this.dvdYear = dvdYear;
         this.dvdGenre = dvdGenre;
 }
+
+    public int getDvdId() {
+        return dvdId;
+    }
+    public void setDvdId(int dvdId) {
+        this.dvdId = dvdId;
+    }
 
     public String getDvdTitle() {
         return dvdTitle;

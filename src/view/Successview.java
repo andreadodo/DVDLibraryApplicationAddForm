@@ -35,6 +35,9 @@ public class Successview extends HttpServlet {
             out.println("<p>Your request to add the ");
             out.println("<i>" + dvd.getDvdTitle() + "</i>");
             out.println(" dvd was succesful.</p>");
+            out.println("<br><br>");
+            out.println("<p><a href='index.jsp'>back home</p>");
+
             out.println("</body>");
             out.println("</html>");
         }

@@ -37,8 +37,15 @@ public class DVDCollection {
 
     }
 
-    public void addDvd(DVDItem dvd) {
-        dvdLibrary.add(dvd);
+    public boolean addDvd(DVDItem newDvd) {
+        for (DVDItem dvd: dvdLibrary) {
+            if(dvd.getDvdGenre().equals(newDvd.getDvdGenre())
+                    && (dvd.getDvdYear() == newDvd.getDvdYear())
+                    && dvd.getDvdTitle().equals(newDvd.getDvdTitle()));
+                return false;
+        }
+        dvdLibrary.add(newDvd);
+        return true;
     }
 
     public void delDvd(int id){         //si potrebbe fare anche con dvdLibray.removeIf()
@@ -50,11 +57,11 @@ public class DVDCollection {
         }
     }
 
-    public void modDvd(DVDItem dvdMod) {
+    public void editDvd(DVDItem dvdEdit) {
         for (int i = 0; i < dvdLibrary.size(); i++) {
             DVDItem dvd = dvdLibrary.get(i);
-            if (dvd.getDvdId() == dvdMod.getDvdId()) {
-                dvdLibrary.set(i, dvdMod);
+            if (dvd.getDvdId() == dvdEdit.getDvdId()) {
+                dvdLibrary.set(i, dvdEdit);
                 return;
             }
         }

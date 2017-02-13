@@ -72,10 +72,16 @@ public class addDvddo extends HttpServlet {
             if(id==0) {// 0 == nn assegnato
                 id = dvdLibrary.getLastId() + 1;
                  dvd = new DVDItem(id, title, year, genre);
-                dvdLibrary.addDvd(dvd);
+                if(!dvdLibrary.addDvd(dvd)) {
+                    errorMsgs.add("The DVD already exist");
+                    request.setAttribute("errors", errorMsgs);
+                    RequestDispatcher view = request.getRequestDispatcher("Error.view");
+                    view.forward(request, response);
+                    return;
+                }
             } else {
                 dvd = new DVDItem(id, title, year, genre);
-                dvdLibrary.modDvd(dvd);
+                dvdLibrary.editDvd(dvd);
             }
 
 

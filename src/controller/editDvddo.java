@@ -48,6 +48,7 @@ public class editDvddo extends HttpServlet {
 
             //open succes view
             request.setAttribute("dvd", dvd);
+
             RequestDispatcher view = request.getRequestDispatcher("formDvd.view");
             view.forward(request, response);
             return;

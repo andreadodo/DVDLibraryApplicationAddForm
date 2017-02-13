@@ -30,7 +30,7 @@ public class DVDCollection {
     }
 
     public int getLastId() {
-        int id = -1;
+        int id = 0;
         if(!dvdLibrary.isEmpty())
             id = dvdLibrary.get(dvdLibrary.size() - 1).getDvdId();
         return id;
@@ -38,7 +38,6 @@ public class DVDCollection {
     }
 
     public void addDvd(DVDItem dvd) {
-        delDvd(dvd.getDvdId());
         dvdLibrary.add(dvd);
     }
 
@@ -46,6 +45,16 @@ public class DVDCollection {
         for (DVDItem dvd: dvdLibrary) {
             if(dvd.getDvdId()==id) {
                 dvdLibrary.remove(dvd);
+                return;
+            }
+        }
+    }
+
+    public void modDvd(DVDItem dvdMod) {
+        for (int i = 0; i < dvdLibrary.size(); i++) {
+            DVDItem dvd = dvdLibrary.get(i);
+            if (dvd.getDvdId() == dvdMod.getDvdId()) {
+                dvdLibrary.set(i, dvdMod);
                 return;
             }
         }

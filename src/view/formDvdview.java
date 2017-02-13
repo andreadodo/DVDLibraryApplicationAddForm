@@ -39,20 +39,24 @@ public class formDvdview extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<form action='addDvd.do' method='POST'>");
+
+            if(idStr != null)
+                out.println("<input type='hidden' name='id' value='"+ dvd.getDvdId() +"'>");
+
             out.println("Title:<br>");
-            if(dvd.equals(null))
+            if(idStr == null)
                 out.println("<input type='text' name='title' value='insert Title'>");
             else
                 out.println("<input type='text' name='title' value='"+ dvd.getDvdTitle() +"'>");
             out.println("<br><br>");
             out.println("Year:<br>");
-            if(dvd.equals(null))
+            if(idStr == null)
                 out.println("<input type='text' name='year' value='insert Year'>");
             else
                 out.println("<input type='text' name='year' value='"+ dvd.getDvdYear() +"'>");
             out.println("<br><br>");
             out.println("Genre:<br>");
-            if(dvd.equals(null)) {
+            if(idStr == null) {
                 out.println("<select name='genre'>");
                 out.println("<option value ='UNKNOW'>select...</option>");
                 out.println("<option value ='Sci-Fi'>Sci-Fi</option>");
@@ -66,9 +70,11 @@ public class formDvdview extends HttpServlet {
                 if(dvd.getDvdGenre().equals("Sci-Fi"))
                     out.println("selected");
                 out.println(">Sci-Fi</option>");
+                out.println("<option value ='Cartoon' ");
                 if(dvd.getDvdGenre().equals("Cartoon"))
                     out.println("selected");
                 out.println(">Cartoon</option>");
+                out.println("<option value ='Drammatics' ");
                 if(dvd.getDvdGenre().equals("Dramatics"))
                     out.println("selected");
                 out.println(">Dramatics</option>");

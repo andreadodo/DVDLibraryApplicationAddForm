@@ -70,7 +70,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>delDvd.do</servlet-name>
-        <url-pattern>/del</url-pattern>
+        <url-pattern>/delDvd.do</url-pattern>
     </servlet-mapping>
 
 

@@ -37,6 +37,8 @@ public class Errorview extends HttpServlet {
             }
 
             out.println("<ul>");
+            out.println("<form action= method='POST'>"
+                    + "<input type='submit' value='edit'> </form>");
             out.println("</body>");
             out.println("</html>");
         }

@@ -26,6 +26,13 @@ public class addDvddo extends HttpServlet {
 
         try {
             //Retrieve from parameters.
+
+            int id = 0;
+            String idStr = request.getParameter("id");
+            try {
+                id = Integer.parseInt(idStr);
+            } catch (Exception e) { }
+
             String title = request.getParameter("title").trim();
             String yearStr = request.getParameter("year").trim();
             String genre = request.getParameter("genre").trim();
@@ -60,10 +67,17 @@ public class addDvddo extends HttpServlet {
 
             //Perform business logic
             DVDCollection dvdLibrary = DVDCollection.getDvdCollection();
+            DVDItem dvd = null;
 
-            int id = dvdLibrary.getLastId()+1;
-            DVDItem dvd = new DVDItem(id,title,year,genre);
-            dvdLibrary.addDvd(dvd);
+            if(id==0) {// 0 == nn assegnato
+                id = dvdLibrary.getLastId() + 1;
+                 dvd = new DVDItem(id, title, year, genre);
+                dvdLibrary.addDvd(dvd);
+            } else {
+                dvd = new DVDItem(id, title, year, genre);
+                dvdLibrary.modDvd(dvd);
+            }
+
 
             //open succes view
             request.setAttribute("dvd", dvd);

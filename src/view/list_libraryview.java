@@ -48,10 +48,10 @@ public class list_libraryview extends HttpServlet {
             out.println("<table>");
 
             if (! dvdLibrary.getLibrary().isEmpty()) {
-                out.println("<tr><td>ID</td><td>TITLE</td><td>YEAR</td><td>GENRE</td><td>EDIT</td><td>DELETE</td></tr>");
+                out.println("<tr><td>id<td>TITLE</td><td>YEAR</td><td>GENRE</td><td>EDIT</td><td>DELETE</td></tr>");
                 for (DVDItem dvd : dvdLibrary.getLibrary()) {
                     out.println("<tr>");
-                    //out.println("<td>" + dvd.getDvdId() + "</td>"); test id
+                    out.println("<td>" + dvd.getDvdId() + "</td>"); //test id
                     out.println("<td>" + dvd.getDvdTitle() + "</td>");
                     out.println("<td>" + dvd.getDvdYear() + "</td>");
                     out.println("<td>" + dvd.getDvdGenre() + "</td>");

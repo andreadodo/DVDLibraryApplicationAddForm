@@ -56,7 +56,7 @@ public class list_libraryview extends HttpServlet {
                     out.println("<td>" + dvd.getDvdYear() + "</td>");
                     out.println("<td>" + dvd.getDvdGenre() + "</td>");
 
-                    out.println("<td><form action=editDvd.do method='POST'>"
+                    out.println("<td><form action=formDvd.view method='POST'>"
                               + "<input name='id' value='" + dvd.getDvdId() + "' type='hidden'>"
                               + "<input type='submit' value='edit'> </form></td>");
 
@@ -70,6 +70,8 @@ public class list_libraryview extends HttpServlet {
                 }
             }
             out.println("</table>");
+            out.println("<br><p><a href='index.jsp'>back home</p>");
+
             out.println("</body>");
             out.println("</html>");
         }

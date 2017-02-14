@@ -41,4 +41,24 @@ public class DVDItem {
     public void setDvdGenre(String dvdGenre) {
         this.dvdGenre = dvdGenre;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DVDItem dvdItem = (DVDItem) o;
+
+        if (dvdYear != dvdItem.dvdYear) return false;
+        if (dvdTitle != null ? !dvdTitle.equals(dvdItem.dvdTitle) : dvdItem.dvdTitle != null) return false;
+        return dvdGenre != null ? dvdGenre.equals(dvdItem.dvdGenre) : dvdItem.dvdGenre == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = dvdTitle != null ? dvdTitle.hashCode() : 0;
+        result = 31 * result + (dvdGenre != null ? dvdGenre.hashCode() : 0);
+        result = 31 * result + dvdYear;
+        return result;
+    }
 }

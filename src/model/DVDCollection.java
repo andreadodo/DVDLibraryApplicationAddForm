@@ -38,14 +38,12 @@ public class DVDCollection {
     }
 
     public boolean addDvd(DVDItem newDvd) {
-        for (DVDItem dvd: dvdLibrary) {
-            if(dvd.getDvdGenre().equals(newDvd.getDvdGenre())
-                    && (dvd.getDvdYear() == newDvd.getDvdYear())
-                    && dvd.getDvdTitle().equals(newDvd.getDvdTitle()));
-                return false;
-        }
+         for (DVDItem dvd: dvdLibrary) {
+             if (dvd.equals(newDvd))
+                 return true;
+         }
         dvdLibrary.add(newDvd);
-        return true;
+        return false;
     }
 
     public void delDvd(int id){         //si potrebbe fare anche con dvdLibray.removeIf()

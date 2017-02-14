@@ -70,7 +70,9 @@ public class list_libraryview extends HttpServlet {
                 }
             }
             out.println("</table>");
-            out.println("<br><p><a href='index.jsp'>back home</p>");
+            out.println("<br>");
+            out.println("<form action=homepage.view method='POST'>"
+                    + "<input type='submit' value='back Home'></form>");
 
             out.println("</body>");
             out.println("</html>");

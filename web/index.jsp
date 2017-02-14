@@ -11,10 +11,14 @@
     <title>DVD Library Application</title>
 </head>
 <body>
-    <h3>DVD Library Application</h3>
-    <ul>
-        <li><a href="list_library.view">Display my DVD library</a></li>
-        <li><a href="formDvd.view">Add a DVD to my collection</a></li>
-    </ul>
+    <h3>DVD Library Application Login</h3>
+
+    <form action="login.do" method="post">
+        <label>User:</label>
+        <input type="text" name="user">
+        <label>Password:</label>
+        <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>

@@ -6,7 +6,7 @@ package model;
 public class UserItem {
 
     public static final int ADMIN = 1,
-                               USER = 2;
+                            USER = 2;
 
     private static int idGlo = 1;
 

@@ -31,11 +31,8 @@ public class Errorview extends HttpServlet {
             out.println("<body text = 'red'>");
             out.println("<h3>Ops ...</h3>");
             out.println("<ul>");
-
-            for (Object er: errorMsgs) {
+            for (Object er: errorMsgs)
                 out.println("<li>"+ er +"</li>");
-            }
-
             out.println("</ul><br><br>");
             out.println("<form><input type='button' value='Back' onClick='history.back();return true;'></form>");
             out.println("</body>");

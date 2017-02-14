@@ -3,7 +3,6 @@ package view;
 import model.DVDCollection;
 import model.DVDItem;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,9 +62,6 @@ public class list_libraryview extends HttpServlet {
                     out.println("<td><form action=delDvd.do method='POST'>"
                               + "<input name='id' value='" + dvd.getDvdId() + "' type='hidden'>"
                               + "<input type='submit' value='delete'> </form></td>");
-
-                  /*out.println("<td>" + "<a href='editDvd.do'>edit</a>" + "</td>");
-                    out.println("<td>" + "<a href='delDvd.do'>delete</a>" + "</td>");*/
                     out.println("</tr>");
                 }
             }

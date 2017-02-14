@@ -67,7 +67,6 @@
         <servlet-name>delDvd.do</servlet-name>
         <servlet-class>controller.delDvddo</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>delDvd.do</servlet-name>
         <url-pattern>/delDvd.do</url-pattern>
@@ -82,6 +81,15 @@
         <url-pattern>/login.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>logout.do</servlet-name>
+        <servlet-class>controller.logoutdo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout.do</servlet-name>
+        <url-pattern>/logout.do</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

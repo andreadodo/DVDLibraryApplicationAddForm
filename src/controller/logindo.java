@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,10 +44,18 @@ public class logindo extends HttpServlet {
 
             //Perform business logic
             UserDatabase userDb = UserDatabase.getUserDb();
+            HttpSession session;
 
             if(userDb.loginUser(new UserItem(user,password))) { //false == error usr/psw
-                //open succes view
-                request.setAttribute("user", user);
+                //open homepage view
+
+                session = request.getSession();
+                session.setAttribute("user", user);
+
+                //request.setAttribute("user", user);
+
+
+
                 RequestDispatcher view = request.getRequestDispatcher("homepage.view");
                 view.forward(request, response);
             } else {

@@ -15,7 +15,6 @@ public class UserDatabase {
     private UserDatabase() {
         addUser(new UserItem("admin","admin",UserItem.ADMIN));
         addUser(new UserItem("user","user",UserItem.USER));
-
     }
 
     private static final UserDatabase userDb = new UserDatabase();

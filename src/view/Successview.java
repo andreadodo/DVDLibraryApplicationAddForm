@@ -1,7 +1,6 @@
 package view;
 
 
-
 import model.DVDItem;
 
 import javax.servlet.ServletException;

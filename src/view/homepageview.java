@@ -4,9 +4,7 @@ import model.UserDatabase;
 import model.UserItem;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -17,11 +15,15 @@ public class homepageview extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        UserDatabase userDb = UserDatabase.getUserDb();
-        UserItem userItem = userDb.getUser((String) request.getAttribute("user"));
+        HttpSession session = request.getSession();
 
-        System.err.println("USER: " + (String) request.getAttribute("user"));
-        System.err.println("ITEM: " + userItem);
+        UserDatabase userDb = UserDatabase.getUserDb();
+        UserItem userItem = userDb.getUser((String) session.getAttribute("user"));
+
+//        System.out.println("SESSION: "+ session.toString());
+//        System.out.println("USER: "+(String) session.getAttribute("user"));
+
+
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
@@ -38,7 +40,8 @@ public class homepageview extends HttpServlet {
             out.println("<form action=list_library.view method='POST'>"
                     + "<input type='submit' value='Display my DVD library'></form>");
             out.println("<br>");
-            out.println("<p><a href='index.jsp'>Logout</p>");
+            out.println("<form action=logout.do method='POST'>"
+                    + "<input type='submit' value='Logout'></form>");
             out.println("</body>");
             out.println("</html>");
         }

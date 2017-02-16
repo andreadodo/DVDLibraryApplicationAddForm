@@ -1,9 +1,28 @@
 package model;
 
+import java.util.Comparator;
+
 /**
  * Created by andrea on 07/02/17.
  */
-public class DVDItem {
+public class DVDItem implements Comparable<DVDItem>{
+
+    public static class DVDYearComparator implements Comparator<DVDItem>{
+
+        @Override
+        public int compare(DVDItem o1, DVDItem o2) {
+            return o1.getDvdYear() - o2.getDvdYear();
+        }
+    }
+
+    public static class DVDGenreComparator implements Comparator<DVDItem>{
+
+        @Override
+        public int compare(DVDItem o1, DVDItem o2) {
+            return o1.getDvdGenre().compareToIgnoreCase(o2.getDvdGenre());
+        }
+    }
+
     private String dvdTitle, dvdGenre;
     private int dvdId, dvdYear;
 
@@ -60,5 +79,10 @@ public class DVDItem {
         result = 31 * result + (dvdGenre != null ? dvdGenre.hashCode() : 0);
         result = 31 * result + dvdYear;
         return result;
+    }
+
+    @Override
+    public int compareTo(DVDItem o) {
+        return dvdTitle.compareToIgnoreCase(o.getDvdTitle());
     }
 }

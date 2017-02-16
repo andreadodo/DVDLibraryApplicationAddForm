@@ -31,7 +31,7 @@ public class formDvdview extends HttpServlet {
 
             UserItem userItem = userDb.getUser((String) session.getAttribute("user"));
 
-            if (UserItem.ADMIN == userItem.getType()) {
+            if (userItem.getType() == UserItem.ADMIN) {
                 //Retrieve from parameters.
                 String idStr = request.getParameter("id");
 
@@ -52,30 +52,13 @@ public class formDvdview extends HttpServlet {
                 out.println("<body>");
                 out.println("<form action='editDvd.do' method='POST'>");
 
-                if (idStr != null)
+                if (idStr != null) { //if id is defined edit else add
                     out.println("<input type='hidden' name='id' value='" + dvd.getDvdId() + "'>");
-
-                out.println("Title:<br>");
-                if (idStr == null)
-                    out.println("<input type='text' name='title' value='insert Title'>");
-                else
+                    out.println("Title:<br>");
                     out.println("<input type='text' name='title' value='" + dvd.getDvdTitle() + "'>");
-                out.println("<br><br>");
-                out.println("Year:<br>");
-                if (idStr == null)
-                    out.println("<input type='text' name='year' value='insert Year'>");
-                else
+                    out.println("<br><br>Year:<br>");
                     out.println("<input type='text' name='year' value='" + dvd.getDvdYear() + "'>");
-                out.println("<br><br>");
-                out.println("Genre:<br>");
-                if (idStr == null) {
-                    out.println("<select name='genre'>");
-                    out.println("<option value ='UNKNOW'>select...</option>");
-                    out.println("<option value ='Sci-Fi'>Sci-Fi</option>");
-                    out.println("<option value ='Cartoon'>Cartoon</option>");
-                    out.println("<option value ='Dramatics'>Dramatics</option>");
-                    out.println("</select>");
-                } else {
+                    out.println("<br><br>Genre:<br>");
                     out.println("<select name='genre'>");
                     out.println("<option value ='Sci-Fi' ");
                     if (dvd.getDvdGenre().equals("Sci-Fi"))
@@ -90,6 +73,19 @@ public class formDvdview extends HttpServlet {
                         out.println("selected");
                     out.println(">Dramatics</option>");
                     out.println("</select>");
+
+                } else {
+                    out.println("Title:<br>");
+                    out.println("<input type='text' name='title' value='insert Title'>");
+                    out.println("<br><br>Year:<br>");
+                    out.println("<input type='text' name='year' value='insert Year'>");
+                    out.println("<br><br>Genre:<br>");
+                    out.println("<select name='genre'>");
+                    out.println("<option value ='UNKNOW'>select...</option>");
+                    out.println("<option value ='Sci-Fi'>Sci-Fi</option>");
+                    out.println("<option value ='Cartoon'>Cartoon</option>");
+                    out.println("<option value ='Dramatics'>Dramatics</option>");
+                    out.println("</select>");
                 }
 
                 out.println("<br><br>");
@@ -97,12 +93,17 @@ public class formDvdview extends HttpServlet {
                 out.println("</form>");
                 out.println("</body>");
                 out.println("</html>");
-            } else
+            } else {
                 errorMsgs.add("Permission denied.");
+                request.setAttribute("errors", errorMsgs);
+                RequestDispatcher view = request.getRequestDispatcher("Error.view");
+                view.forward(request, response);
+            }
+        } catch (RuntimeException re) {
+            errorMsgs.add(re.getMessage());
             request.setAttribute("errors", errorMsgs);
             RequestDispatcher view = request.getRequestDispatcher("Error.view");
             view.forward(request, response);
-
         }
     }
 }

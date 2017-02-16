@@ -4,15 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <servlet>
-        <servlet-name>list_library.view</servlet-name>
-        <servlet-class>view.list_libraryview</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>list_library.view</servlet-name>
-        <url-pattern>/list_library.view</url-pattern>
-    </servlet-mapping>
-
 
     <servlet>
         <servlet-name>formDvd.view</servlet-name>
@@ -53,6 +44,15 @@
         <url-pattern>/homepage.view</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>listLibrary.view</servlet-name>
+        <servlet-class>view.listLibraryview</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listLibrary.view</servlet-name>
+        <url-pattern>/listLibrary.view</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>editDvd.do</servlet-name>
@@ -89,7 +89,8 @@
         <servlet-name>logout.do</servlet-name>
         <url-pattern>/logout.do</url-pattern>
     </servlet-mapping>
-    
+
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

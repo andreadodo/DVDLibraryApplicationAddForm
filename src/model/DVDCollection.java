@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by andrea on 07/02/17.
  */
-public class DVDCollection {
+public class DVDCollection{
     private ArrayList<DVDItem> dvdLibrary = new ArrayList<>();
 
     public ArrayList<DVDItem> getLibrary() {
@@ -13,6 +13,10 @@ public class DVDCollection {
     }
 
     private DVDCollection() {
+        dvdLibrary.add(new DVDItem(1,"def",2005,"a"));
+        dvdLibrary.add(new DVDItem(2,"cde",2008,"z"));
+        dvdLibrary.add(new DVDItem(3,"abc",2003,"g"));
+        dvdLibrary.add(new DVDItem(4,"bcd",2002,"h"));
     }
 
     private static final DVDCollection dvdCollection = new DVDCollection();
@@ -64,4 +68,5 @@ public class DVDCollection {
             }
         }
     }
+
 }

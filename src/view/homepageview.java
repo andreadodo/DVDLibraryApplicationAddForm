@@ -37,7 +37,7 @@ public class homepageview extends HttpServlet {
             if (userItem.getType() == UserItem.ADMIN)
                 out.println("<form action=formDvd.view method='POST'>"
                                 + "<input type='submit' value='Add a DVD to my collection'></form><br>");
-            out.println("<form action=list_library.view method='POST'>"
+            out.println("<form action=listLibrary.view method='POST'>"
                     + "<input type='submit' value='Display my DVD library'></form>");
             out.println("<br>");
             out.println("<form action=logout.do method='POST'>"

@@ -13,7 +13,7 @@ public class UserDatabase {
     }
 
     private UserDatabase() {
-        addUser(new UserItem("admin","admin",UserItem.ADMIN));
+        addUser(new UserItem("admin","",UserItem.ADMIN));
         addUser(new UserItem("user","user",UserItem.USER));
     }
 

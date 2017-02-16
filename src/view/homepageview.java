@@ -20,11 +20,6 @@ public class homepageview extends HttpServlet {
         UserDatabase userDb = UserDatabase.getUserDb();
         UserItem userItem = userDb.getUser((String) session.getAttribute("user"));
 
-//        System.out.println("SESSION: "+ session.toString());
-//        System.out.println("USER: "+(String) session.getAttribute("user"));
-
-
-
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");

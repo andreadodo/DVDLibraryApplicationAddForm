@@ -33,15 +33,12 @@ public class listLibraryview extends HttpServlet {
         if(save)
             response.addCookie(new Cookie("orderCookie", order));
 
-        System.out.println("ORDER BY: " + order);
-        System.out.println("SAVE: " + save);
         for (Cookie c: cookiesBox){
             if(c.getName().equals("orderCookie")&&order.equals("nullnull")) {
                 order = c.getValue();
                 save = true;
             }
         }
-        System.out.println("COOKIES: "+order);
 
         switch (order) {
 
